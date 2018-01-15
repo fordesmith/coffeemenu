@@ -79,7 +79,7 @@ class API < Sinatra::Base
       when 'order:start'
         # Modify message to acknowledge
         msg = request_data['original_message']
-        msg['text'] = ':white_check_mark: I\'m getting an application started for you.'
+        msg['text'] = ':white_check_mark: I\'m getting an order started for you.'
         msg['attachments'] = []
         API.send_response(url, msg)
 
@@ -117,7 +117,7 @@ class API < Sinatra::Base
         updated = Bot.acknowledge_action_from_message(
           request_data['original_message'], 
           'order:select_option', 
-          "The account type to open: #{selected["text"].downcase}"
+          "You chose #{selected["text"].downcase}"
         )
         attach = Bot.select_option_for_order(
           request_data['user']['id'], 
@@ -184,7 +184,7 @@ class Bot
       # Send message
       $client.chat_postMessage(
         channel: res.channel.id, 
-        text: 'I am an account opening bot, and I\'m here to help make the process of setting up an investment account as simple as possible.', 
+        text: 'I am coffeebot, and I\'m here to help bring you fresh coffee :coffee:, made to order.', 
         attachments: attachments.to_json
       )
     end
@@ -200,7 +200,7 @@ class Bot
       }
       # Sends menu with order:select_type callback
       msg = {
-        text: 'Great! What account can I open for you?',
+        text: 'Great! What can I get started for you?',
         attachments: [{
           color: '#5A352D',
           callback_id: 'order:select_type',
@@ -215,7 +215,7 @@ class Bot
     else
       # Order already exists, don't start new one
       msg = {
-        text: "I\'m already working on your case, please be patient",
+        text: "I\'m already working on an order for you, please be patient",
         replace_original: false
       }
     end
@@ -286,7 +286,7 @@ class Bot
     order_item = Menu.items.find { |i| i[:id] == order['type']}[:name]
 
     msg_fields = [{
-        title: 'Account type',
+        title: 'Drink',
         value: "#{order_item}"
       }]
 
@@ -297,17 +297,17 @@ class Bot
 
     order_str = summarize_order($orders[user_id])
     final_order = {
-        text: "<@#{user_id}> has started a new account application.",
+        text: "<@#{user_id}> has submitted a new coffee order.",
         attachments: [{
             color: '#5A352D',
-            title: 'Account details',
+            title: 'Order details',
             text: "#{order_str}",
             fields: msg_fields
           }]
       }
 
     API.send_response(ENV['SLACK_WEBHOOK_URL'], final_order)
-    return "We are starting the process of opening your account ( #{order_str} )!"
+    return "Your order of #{order_str} is coming right up!"
   end
 
   # Find attachment with action_callback_id
@@ -329,7 +329,7 @@ class Bot
     else
       $client.chat_postMessage(
         channel: msg['channel'], 
-        text: 'Let\'s keep working on the application'
+        text: 'Let\'s keep working on the open order'
       )
     end
   end

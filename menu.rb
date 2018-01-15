@@ -1,70 +1,98 @@
 class Menu
   @@items =  [
     {
-      id: 'investment',
-      name: 'Investment',
-      options: ['inv_account_type'],
+      id: 'cappuccino',
+      name: 'Cappuccino',
+      options: ['milk'],
     },
     {
-      id: 'SMSF',
-      name: 'SMSF',
-      options: ['smsf_trust_type'],
+      id: 'americano',
+      name: 'Americano',
+      options: ['strength'],
     },
     {
-      id: 'superannuation',
-      name: 'Superannuation',
-      options: ['super_account_type'],
+      id: 'gibraltar',
+      name: 'Gibraltar',
+      options: ['milk'],
+    },
+    {
+      id: 'latte',
+      name: 'Latte',
+      options: ['milk'],
+    },
+    {
+      id: 'lavlatte',
+      name: 'Lavendar Latte',
+      options: ['milk'],
+    },
+    {
+      id: 'mintlatte',
+      name: 'Mint Latte',
+      options: ['milk'],
+    },
+    {
+      id: 'espresso',
+      name: 'Espresso',
+      options: ['strength'],
+    },
+    {
+      id: 'espressomach',
+      name: 'Espresso Macchiato',
+      options: ['milk'],
+    },
+    {
+      id: 'mocha',
+      name: 'Mocha',
+      options: ['milk'],
+    },
+    {
+      id: 'tea',
+      name: 'Hot Tea',
+      options: ['milk'],
     }
   ]
 
   @@options = [
     {
-      id: 'inv_account_type',
+      id: 'strength',
       choices: [
         {
-          id: 'individual',
-          name: 'Individual',
+          id: 'single',
+          name: 'Single',
         },
         {
-          id: 'joint',
-          name: 'Joint',
+          id: 'double',
+          name: 'Double',
         },
         {
-          id: 'individual trust',
-          name: 'Individual Trust',
+          id: 'triple',
+          name: 'Triple',
         },
         {
-          id: 'corporate trust',
-          name: 'Corporate Trust',
+          id: 'quad',
+          name: 'Quad',
         },
       ],
     },
     {
-      id: 'smsf_trust_type',
+      id: 'milk',
       choices: [
         {
-          id: 'individual trust',
-          name: 'Individual Trust',
+          id: 'whole',
+          name: 'Whole',
         },
         {
-          id: 'corporate trust',
-          name: 'Corporate Trust',
-        },
-     
-      ],
-    },
-    {
-      id: 'super_account_type',
-      choices: [
-        {
-          id: 'superannuation',
-          name: 'Superannuation',
+          id: 'lowfat',
+          name: 'Low fat',
         },
         {
-          id: 'pension',
-          name: 'Pension',
+          id: 'almond',
+          name: 'Almond',
         },
-     
+        {
+          id: 'soy',
+          name: 'Soy',
+        },
       ],
     }
   ]
